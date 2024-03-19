@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGOOSE)
     .then(() => console.log('Mongoose Connect'))
-    .catch((error) => console.error(error));
+    .catch(err => console.error(err));
 
 app.use(express.json());
 
@@ -19,3 +19,5 @@ app.use("/api/products", productRoutes);
 app.listen(port, () => {
     console.log('listening on port ' + port);
 })
+
+module.exports = app;
