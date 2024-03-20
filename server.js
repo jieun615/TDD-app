@@ -10,14 +10,18 @@ mongoose.connect(process.env.MONGOOSE)
 
 app.use(express.json());
 
+app.use("/api/products", productRoutes);
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.use("/api/products", productRoutes);
-
-app.listen(port, () => {
-    console.log('listening on port ' + port);
+app.use((error, req, res, next) => {
+    res.status(500).json({ message: error.message })
 })
+
+// app.listen(port, () => {
+//     console.log('listening on port ' + port);
+// })
 
 module.exports = app;
