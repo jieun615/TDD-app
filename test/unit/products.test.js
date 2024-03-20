@@ -64,4 +64,8 @@ describe("Product Controller Get", () => {
         await productController.getProducts(req, res, next);
         expect(res._getJSONData()).toStrictEqual(allProducts)
     })
+    it("should handle error", async () => {
+        const errorMessage = { massage: "Error finding product data"}
+        const rejectedPromise = Promise.reject(errorMessage)
+    })
 })
